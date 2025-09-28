@@ -1,0 +1,2 @@
+[console_scripts]
+mad-proxy = proxy_server:main

@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: malicious_activity_detector
+Version: 0.1
+Summary: Local proxy server with custom policy-based malicious activity detection
+Author: Your Name
+Requires-Python: >=3.7
+Requires-Dist: mitmproxy
+Requires-Dist: pyyaml
+Dynamic: author
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
