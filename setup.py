@@ -1,22 +1,19 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="mad_proxy",
-   
-    version="0.1",
+    name='mad_proxy',
+    version='0.2',  # bump the version for new release
+    description='A local HTTP/HTTPS proxy with custom detection and blocking policies.',
+    author='machphy',
+    author_email='rajeevsharmamachphy@gmail.com',
+    url='https://github.com/machphy/mad-proxy',
     packages=find_packages(),
     install_requires=[
-        "mitmproxy",
-        "pyyaml",
+        'mitmproxy>=7.0.0',  # example dependency
+        # add other dependencies here
     ],
-    include_package_data=True,
-    entry_points={
-    'console_scripts': [
-        'mad-proxy = mad_proxy.proxy_server:main',
+    classifiers=[
+        'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: MIT License',
     ],
-},
-
-    author="Your Name",
-    description="Local proxy server with malicious activity detection policies",
-    python_requires='>=3.7',
 )

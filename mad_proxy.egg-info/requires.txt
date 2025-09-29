@@ -1,2 +1,1 @@
-mitmproxy
-pyyaml
+mitmproxy>=7.0.0

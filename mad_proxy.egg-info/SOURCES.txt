@@ -10,6 +10,5 @@ mad_proxy/utils.py
 mad_proxy.egg-info/PKG-INFO
 mad_proxy.egg-info/SOURCES.txt
 mad_proxy.egg-info/dependency_links.txt
-mad_proxy.egg-info/entry_points.txt
 mad_proxy.egg-info/requires.txt
 mad_proxy.egg-info/top_level.txt

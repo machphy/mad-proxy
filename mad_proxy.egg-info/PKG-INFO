@@ -1,12 +1,16 @@
 Metadata-Version: 2.4
 Name: mad_proxy
-Version: 0.1
-Summary: Local proxy server with malicious activity detection policies
-Author: Your Name
-Requires-Python: >=3.7
-Requires-Dist: mitmproxy
-Requires-Dist: pyyaml
+Version: 0.2
+Summary: A local HTTP/HTTPS proxy with custom detection and blocking policies.
+Home-page: https://github.com/machphy/mad-proxy
+Author: machphy
+Author-email: rajeevsharmamachphy@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: mitmproxy>=7.0.0
 Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
 Dynamic: requires-dist
-Dynamic: requires-python
 Dynamic: summary
