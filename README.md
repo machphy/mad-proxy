@@ -1,114 +1,143 @@
-Malicious Activity Detection Proxy
-This project is a local HTTP/HTTPS proxy server to detect and block malicious activity in web traffic by applying custom security policies in real-time. It helps users monitor browser traffic and enforce security rules such as blocking unauthorized or suspicious websites.
 
-Features
-Intercepts all HTTP and HTTPS traffic from your browser.
+# mad-proxy
 
-Uses a local proxy server with trusted HTTPS interception (install mitmproxy certificate).
+A Python-based local HTTP/HTTPS proxy with custom detection and blocking policies for malicious activity. Built using mitmproxy, `mad-proxy` empowers cybersecurity professionals and developers to intercept, inspect, and secure their web traffic with customizable rules.
 
-Implements a policy engine to block or allow requests based on URL matching rules.
+---
 
-Logs blocked and allowed requests with relevant details.
+## Features
 
-Supports easy policy configuration via a YAML file.
+- Intercepts all HTTP and HTTPS browser traffic via a local proxy server.
+- Blocks or allows requests based on powerful and customizable policy rules (`config.yaml`).
+- Fast setup and integration with browsers (Firefox, Chrome, etc.).
+- Real-time logging of allowed and blocked requests in your terminal.
+- Written with extensibility and cybersecurity in mind.
 
-Example policies include blocking unauthorized sites (HTTP 401) and allowing safe sites (HTTP 200).
+---
 
-How It Works
-Run the local proxy server (proxy_server.py) using mitmproxy.
+## Getting Started
 
-Configure your browser to send traffic through the proxy (localhost:8080).
+### Prerequisites
 
-The proxy intercepts all requests.
+- Python 3.7 or higher
+- pip
+- (Recommended) Use a virtual environment
 
-The policy engine inspects URLs and applies configured rules:
+### Installation
 
-If URL matches blocked domains, request is blocked and response 403 returned.
+Clone the repository:
 
-If URL is allowed, request is passed through normally with status 200.
+```
+git clone https://github.com/machphy/mad-proxy.git
+cd mad-proxy
+```
 
-All requests and decisions are logged in the terminal.
+Create and activate a virtual environment (optional but recommended):
 
-You can customize policies in config.yaml.
-
-Setup & Installation
-Prerequisites
-Python 3.12+
-
-mitmproxy
-
-Linux environment (tested on Ubuntu/Debian)
-
-Step 1: Clone and install dependencies
-bash
-git clone <your-repo-url>
-cd malicious_activity_detector
+```
 python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
-Step 2: Configure browser proxy
-Configure Firefox or Chrome proxy settings to use localhost:8080 for HTTP and HTTPS.
+```
 
-Install the mitmproxy root certificate:
+Install the package and dependencies:
 
-Run python3 proxy_server.py
+```
+pip install .
+```
 
-Open browser and visit http://mitm.it
+Or use a pre-built wheel if available:
 
-Download and install the certificate.
+```
+pip install dist/mad_proxy-<version>-py3-none-any.whl
+```
 
-Step 3: Configure policies
-Edit config.yaml:
+---
 
-text
+### Configuration
+
+Edit `mad_proxy/config.yaml` to set your policies. Example:
+
+```
 block_domains:
   - "example.com"
   - "unauthorized.site"
-Step 4: Run the proxy server
-bash
-python3 proxy_server.py
-Testing & Use Cases
-Case 1: URL returns HTTP 200 (Allowed)
-Browsing allowed sites like https://www.google.com will pass through.
+```
 
-You will see in terminal:
+---
 
-text
-Allowed request: https://www.google.com
-Case 2: URL blocked with HTTP 403 (Policy restricted)
-Browsing blocked sites like http://example.com or http://unauthorized.site
+### Running the Proxy
 
-Terminal shows:
+Start the proxy server (default port 8080):
 
-text
-Blocked request to http://example.com
-Browser receives “Blocked by security policy” message with HTTP status 403.
+```
+mad-proxy
+```
 
-Case 3: Unauthorized HTTP 401 (future enhancement)
-Policies can be extended to detect and act on HTTP 401 responses.
+**Change port if needed:**
 
-You can implement alerts or logging for unauthorized access attempts.
+```
+mad-proxy --mode regular@8082
+```
 
-Project Structure
-text
-malicious_activity_detector/
-├── proxy_server.py        # Runs proxy and enforces policies
-├── policy_engine.py       # (Planned) Advanced policy logic
-├── analyzer.py            # (Planned) Traffic content analysis
-├── config.yaml            # User-defined block/allow rules
-├── README.md              # Project documentation
-├── requirements.txt       # Python dependencies
-└── utils.py               # Utility functions (logging, alerts)
-How to Extend
-Add regex or heuristic-based URL detection in policy_engine.py.
+---
 
-Log requests and blocks into a file with timestamps.
+### Browser Setup
 
-Implement alerting (email, desktop notifications).
+- Set your browser's HTTP and HTTPS proxy to `localhost:8080`.
+- To inspect HTTPS, install and trust the mitmproxy certificate:
+  - Visit [http://mitm.it](http://mitm.it) while the proxy is running.
+  - Follow on-screen instructions for your browser.
 
-Develop a UI for easy policy management.
+---
 
-Integrate threat intelligence feeds to update block lists automatically.
+## Usage & Examples
 
-License
-MIT License# mad-proxy
+**Allowed request:**
+
+- Visit any site not blocked by your policy; logs show  
+  `Allowed request: https://www.google.com`
+
+**Blocked request:**
+
+- Try visiting a blocked site; logs show  
+  `Blocked request to http://example.com`  
+  Browser displays a "Blocked by security policy" message.
+
+---
+
+## Project Structure
+
+```
+mad-proxy/
+├── mad_proxy/
+│   ├── proxy_server.py
+│   ├── config.yaml
+│   └── ...
+├── README.md
+├── setup.py
+├── requirements.txt
+└── MANIFEST.in
+```
+
+---
+
+## Contributing
+
+Contributions, issues, and feature requests are welcome!  
+Please open an issue or fork and submit a pull request.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+## Author
+
+Maintained by [machphy](https://github.com/machphy).
+
+---
+
+```
