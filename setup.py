@@ -1,19 +1,22 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="malicious_activity_detector",
+    name="mad_proxy",
+   
     version="0.1",
     packages=find_packages(),
     install_requires=[
         "mitmproxy",
-        "pyyaml"
+        "pyyaml",
     ],
+    include_package_data=True,
     entry_points={
-        'console_scripts': [
-            'mad-proxy = proxy_server:main',  # if you refactor proxy_server.py to have main()
-        ],
-    },
+    'console_scripts': [
+        'mad-proxy = mad_proxy.proxy_server:main',
+    ],
+},
+
     author="Your Name",
-    description="Local proxy server with custom policy-based malicious activity detection",
+    description="Local proxy server with malicious activity detection policies",
     python_requires='>=3.7',
 )

@@ -1,0 +1,15 @@
+MANIFEST.in
+README.md
+setup.py
+mad_proxy/__init__.py
+mad_proxy/analyzer.py
+mad_proxy/config.yaml
+mad_proxy/policy_engine.py
+mad_proxy/proxy_server.py
+mad_proxy/utils.py
+mad_proxy.egg-info/PKG-INFO
+mad_proxy.egg-info/SOURCES.txt
+mad_proxy.egg-info/dependency_links.txt
+mad_proxy.egg-info/entry_points.txt
+mad_proxy.egg-info/requires.txt
+mad_proxy.egg-info/top_level.txt

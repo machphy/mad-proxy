@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: mad_proxy
+Version: 0.1
+Summary: Local proxy server with malicious activity detection policies
+Author: Your Name
+Requires-Python: >=3.7
+Requires-Dist: mitmproxy
+Requires-Dist: pyyaml
+Dynamic: author
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
