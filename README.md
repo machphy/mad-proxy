@@ -1,10 +1,4 @@
-Yeh merge conflict aapke README.md file mein hai jisme do versions ke beech clash hai. Main aapke liye cleaned aur professionally formatted README.md file banake deta hoon, jo dono versions ke best parts lekar hoga.
 
-***
-
-### Cleaned & formatted README.md:
-
-```markdown
 # mad-proxy: Malicious Activity Detection Proxy
 
 A Python-based local HTTP/HTTPS proxy server designed to detect and block malicious activity in web traffic by applying custom security policies in real-time.  
@@ -284,7 +278,6 @@ mad-proxy/
 - Develop a UI for easy policy management.
 - Integrate threat intelligence feeds to update block lists automatically.
 
----
 
 ## License
 
@@ -296,5 +289,3 @@ This project is licensed under the MIT License.
 
 Maintained by [machphy](https://github.com/machphy).
 ```
-
-Aap bataen ise README.md file me update karna hai?
