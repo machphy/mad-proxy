@@ -1,105 +1,31 @@
 
 # mad-proxy: Malicious Activity Detection Proxy
 
-A Python-based local HTTP/HTTPS proxy server designed to detect and block malicious activity in web traffic by applying custom security policies in real-time.  
-Built using mitmproxy, `mad-proxy` empowers cybersecurity professionals and developers to intercept, inspect, and secure web traffic with customizable rules. 
+A Python-based HTTP/HTTPS proxy server for real-time detection and blocking of malicious web activity using custom security policies.  
+Built with mitmproxy for cybersecurity professionals, red teamers, and developers who want transparency and control in web traffic inspection and security.
 
 ---
 
 ## Features
 
-- Intercepts all HTTP and HTTPS browser traffic via a local proxy server.
-- Blocks or allows requests based on powerful and customizable policy rules via `config.yaml`.
-- Fast setup and integration with browsers (Firefox, Chrome, etc.).
-- Real-time logging of allowed and blocked requests in your terminal.
-- Written with extensibility and cybersecurity in mind.
+- **Intercepts all HTTP and HTTPS browser traffic** via a local proxy server.
+- **Customizable policy engine:** Block or allow requests using rules defined in a YAML file (`config.yaml`).
+- **Quick integration** with major browsers like Firefox, Chrome, and Brave.
+- **Real-time logging** of blocked and allowed requests in the terminal.
+- **Supports trusted HTTPS interception** via mitmproxy root certificate installation.
+- **Extensible design** for future feature additions and research.
 
 ---
 
-## How It Works
+## Project Architecture
 
-1. Run the local proxy server (`proxy_server.py`) using mitmproxy.
-2. Configure your browser to send traffic through the proxy (localhost:8080).
-3. The proxy intercepts all requests.
-4. The policy engine inspects URLs and applies configured rules:
-   - If a URL matches blocked domains, the request is blocked and HTTP 403 is returned.
-   - If the URL is allowed, the request passes through with status 200.
-5. All requests and policy decisions are logged in the terminal.
-6. Customize policies in `config.yaml`.
-
----
-
-## Setup & Installation
-
-### Prerequisites
-
-- Python 3.7 or higher (Python 3.12+ recommended)
-- mitmproxy
-- Linux environment (tested on Ubuntu/Debian)
-- pip
-- (Recommended) Use a virtual environment
-
-### Step 1: Clone and install dependencies
-
-```
-git clone https://github.com/machphy/mad-proxy.git
-cd mad-proxy
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-Or install the package directly:
-
-```
-pip install .
-```
-
-Or use a pre-built wheel (replace <version> accordingly):
-
-```
-pip install dist/mad_proxy-<version>-py3-none-any.whl
-```
-
-### Step 2: Configure browser proxy
-
-- Configure Firefox or Chrome proxy settings to use `localhost:8080` for HTTP and HTTPS.
-- Install the mitmproxy root certificate:
-  - Run `python3 proxy_server.py`.
-  - Open browser to [http://mitm.it](http://mitm.it).
-  - Download and install the certificate.
-
-### Step 3: Configure policies
-
-Edit `config.yaml` to set your blocking or allowing rules:
-
-```
-block_domains:
-  - "example.com"
-  - "unauthorized.site"
-```
-
-### Step 4: Run the proxy server
-
-```
-python3 proxy_server.py
-```
-
----
-
-## Usage & Examples
-
-- **Allowed request:**  
-  Visiting allowed sites like `https://www.google.com` will pass through the proxy. Terminal logs will show:  
-  `Allowed request: https://www.google.com`.
-
-- **Blocked request:**  
-  Visiting blocked sites like `http://example.com` will be blocked with HTTP 403. Terminal logs:  
-  `Blocked request to http://example.com`.  
-  The browser will display a "Blocked by security policy" message.
-
-- **Unauthorized (HTTP 401) handling:**  
-  Planned feature for detecting unauthorized requests and raising alerts.
+Browser  
+↓  
+`mad-proxy` (`proxy_server.py`)  
+↓  
+Policy Engine (`policy_engine.py` & `config.yaml`)  
+↓  
+Internet
 
 ---
 
@@ -108,119 +34,56 @@ python3 proxy_server.py
 ```
 mad-proxy/
 ├── mad_proxy/
-│   ├── proxy_server.py        # Runs proxy and enforces policies
-│   ├── policy_engine.py       # (Planned) Advanced policy logic
-│   ├── analyzer.py            # (Planned) Traffic content analysis
-│   ├── config.yaml            # User-defined block/allow rules
-│   └── utils.py               # Utility functions (logging, alerts)
-├── README.md                  # Project documentation
-├── requirements.txt           # Python dependencies
-├── setup.py                   # Package setup script
-└── MANIFEST.in                # Packaging manifest
+│   ├── proxy_server.py     # Main proxy and request handler
+│   ├── policy_engine.py    # Policy rules and matching logic
+│   ├── config.yaml         # User-defined block/allow domains
+│   ├── analyzer.py         # (Planned) Advanced traffic analysis
+│   └── utils.py            # Helper functions (logging, alerts)
+├── README.md               # Project documentation
+├── requirements.txt        # Python dependencies
+├── setup.py                # Package build and installation script
+├── CHANGELOG.md            # Version and update log
+└── MANIFEST.in             # Manifest file for package
 ```
 
 ---
 
-## How to Extend
-
-- Add regex or heuristic-based URL detection in `policy_engine.py`.
-- Log requests and blocks into a file with timestamps.
-- Implement alerts (email, desktop notifications).
-- Develop a UI for easy policy management.
-- Integrate threat intelligence feeds to update block lists automatically.
-
----
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
-## Author
-
-Maintained by [machphy](https://github.com/machphy).
-
-```
-
-***
-
-Kya main ye isi tarah README.md file me daal doon? Ya aap koi aur modification chahenge?Yeh cleaned, merged aur professional README.md file hai jo dono sections ke behtareen hisson ko mila kar banaya gaya hai. Yeh aapke GitHub repository me use karne ke liye tayar hai.Yeh aapke README.md ke liye cleaned-up aur well-structured final content hai:
-
-```markdown
-# mad-proxy: Malicious Activity Detection Proxy
-
-A Python-based local HTTP/HTTPS proxy server designed to detect and block malicious activity in web traffic by applying custom security policies in real-time.  
-Built using mitmproxy, `mad-proxy` empowers cybersecurity professionals and developers to intercept, inspect, and secure web traffic with customizable rules. 
-
----
-
-## Features
-
-- Intercepts all HTTP and HTTPS browser traffic via a local proxy server.
-- Blocks or allows requests based on powerful and customizable policy rules via `config.yaml`.
-- Fast setup and integration with browsers (Firefox, Chrome, etc.).
-- Real-time logging of allowed and blocked requests in your terminal.
-- Written with extensibility and cybersecurity in mind.
-
----
-
-## How It Works
-
-1. Run the local proxy server (`proxy_server.py`) using mitmproxy.
-2. Configure your browser to send traffic through the proxy (localhost:8080).
-3. The proxy intercepts all requests.
-4. The policy engine inspects URLs and applies configured rules:
-   - If a URL matches blocked domains, the request is blocked and HTTP 403 is returned.
-   - If the URL is allowed, the request passes through with status 200.
-5. All requests and policy decisions are logged in the terminal.
-6. Customize policies in `config.yaml`.
-
----
-
-## Setup & Installation
+## Getting Started
 
 ### Prerequisites
 
-- Python 3.7 or higher (Python 3.12+ recommended)
-- mitmproxy
-- Linux environment (tested on Ubuntu/Debian)
+- Python 3.7 or higher (3.12+ recommended)
 - pip
-- (Recommended) Use a virtual environment
+- mitmproxy
+- Linux (tested on Ubuntu/Debian)
 
-### Step 1: Clone and install dependencies
+### Installation
+
+**Clone the repository:**
 
 ```
 git clone https://github.com/machphy/mad-proxy.git
 cd mad-proxy
+```
+
+**Create and activate a virtual environment (recommended):**
+
+```
 python3 -m venv venv
 source venv/bin/activate
+```
+
+**Install dependencies:**
+
+```
 pip install -r requirements.txt
 ```
 
-Or install the package directly:
+---
 
-```
-pip install .
-```
+## Configuration
 
-Or use a pre-built wheel (replace <version> accordingly):
-
-```
-pip install dist/mad_proxy-<version>-py3-none-any.whl
-```
-
-### Step 2: Configure browser proxy
-
-- Configure Firefox or Chrome proxy settings to use `localhost:8080` for HTTP and HTTPS.
-- Install the mitmproxy root certificate:
-  - Run `python3 proxy_server.py`.
-  - Open browser to [http://mitm.it](http://mitm.it).
-  - Download and install the certificate.
-
-### Step 3: Configure policies
-
-Edit `config.yaml` to set your blocking or allowing rules:
+Edit `mad_proxy/config.yaml` to define your block or allow list:
 
 ```
 block_domains:
@@ -228,64 +91,118 @@ block_domains:
   - "unauthorized.site"
 ```
 
-### Step 4: Run the proxy server
+Add or modify domains as desired.
+
+---
+
+## Browser Setup
+
+1. Set your browser HTTP/HTTPS proxy to `localhost:8080`.  
+2. Trust the mitmproxy root certificate:  
+   - Run the proxy server (next section).  
+   - Visit [http://mitm.it](http://mitm.it) in the browser.  
+   - Download and install the certificate following the instructions.
+
+---
+
+## Running the Proxy Server
+
+Start the proxy:
 
 ```
 python3 proxy_server.py
 ```
 
----
-
-## Usage & Examples
-
-- **Allowed request:**  
-  Visiting allowed sites like `https://www.google.com` will pass through the proxy. Terminal logs will show:  
-  `Allowed request: https://www.google.com`.
-
-- **Blocked request:**  
-  Visiting blocked sites like `http://example.com` will be blocked with HTTP 403. Terminal logs:  
-  `Blocked request to http://example.com`.  
-  The browser will display a "Blocked by security policy" message.
-
-- **Unauthorized (HTTP 401) handling:**  
-  Planned feature for detecting unauthorized requests and raising alerts.
+Default is port 8080; modify if needed.
 
 ---
 
-## Project Structure
+## Usage Examples
+
+**Allowed Request:**  
+Visiting allowed sites (e.g., https://www.google.com) logs:  
 
 ```
-mad-proxy/
-├── mad_proxy/
-│   ├── proxy_server.py        # Runs proxy and enforces policies
-│   ├── policy_engine.py       # (Planned) Advanced policy logic
-│   ├── analyzer.py            # (Planned) Traffic content analysis
-│   ├── config.yaml            # User-defined block/allow rules
-│   └── utils.py               # Utility functions (logging, alerts)
-├── README.md                  # Project documentation
-├── requirements.txt           # Python dependencies
-├── setup.py                   # Package setup script
-└── MANIFEST.in                # Packaging manifest
+Allowed request: https://www.google.com
+```
+
+**Blocked Request:**  
+Blocked sites (e.g., http://example.com) log:  
+
+```
+Blocked request to http://example.com
+```
+
+Browser shows a "Blocked by security policy" HTTP 403 message.
+
+---
+
+## Package Build & Setup Instructions
+
+You can build and install mad-proxy as a Python package.
+
+### Step 1: Prerequisites
+
+Install build and twine tools:
+
+```
+pip install --upgrade build twine
+```
+
+### Step 2: Build the package
+
+Run in project root:
+
+```
+python3 -m build
+```
+
+This generates `.whl` and `.tar.gz` files in the `dist/` folder.
+
+### Step 3: Local package install
+
+Install the built wheel locally:
+
+```
+pip install dist/mad_proxy-<version>-py3-none-any.whl
+```
+
+Replace `<version>` with the actual version number.
+
+### Step 4: (Optional) Publish package to PyPI
+
+After configuring `.pypirc` with your PyPI token, run:
+
+```
+twine upload dist/*
 ```
 
 ---
 
 ## How to Extend
 
-- Add regex or heuristic-based URL detection in `policy_engine.py`.
-- Log requests and blocks into a file with timestamps.
-- Implement alerts (email, desktop notifications).
-- Develop a UI for easy policy management.
-- Integrate threat intelligence feeds to update block lists automatically.
-
-
-## License
-
-This project is licensed under the MIT License.
+- Add regex or heuristic-based URL/malicious content detection in `policy_engine.py`.
+- Implement advanced logging and alert mechanisms in `utils.py`.
+- Build UI for easier rule management.
+- Integrate with threat intelligence feeds for automated updates.
 
 ---
 
-## Author
+## Troubleshooting
 
-Maintained by [machphy](https://github.com/machphy).
-```
+- **Mitmproxy certificate errors:** Ensure the mitmproxy root certificate is installed correctly.
+- **Port conflicts:** If port 8080 is busy, change the port in the proxy start command or config.
+- **Configuration errors:** YAML formatting is strict—validate `config.yaml` carefully.
+
+---
+
+## License
+
+MIT License
+
+---
+
+## Maintainer
+
+Maintained by [machphy](https://github.com/machphy)
+Email :- [Email](rajeevsharmamachphy@gmail.com)
