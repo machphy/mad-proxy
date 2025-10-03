@@ -25,6 +25,7 @@ Read [SOP](https://github.com/machphy/mad-proxy/blob/main/img/SOP_rajeev.pdf)
 ---
 
 ## Project Architecture
+![Architecture diagram](https://github.com/machphy/mad-proxy/blob/main/img/test_new.png?raw=true)
 
 Browser  
 ↓  
