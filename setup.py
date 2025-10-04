@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 setup(
     name='mad_proxy',
-    version='0.2',  # bump the version for new release
-    description='A local HTTP/HTTPS proxy with custom detection and blocking policies.',
+    version="0.3",  # bump the version for new release
+    description="Lightweight HTTP/HTTPS interception proxy with real-time traffic firewall and domain block.",
     author='machphy',
     author_email='rajeevsharmamachphy@gmail.com',
     url='https://github.com/machphy/mad-proxy',

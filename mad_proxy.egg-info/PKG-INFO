@@ -1,7 +1,7 @@
 Metadata-Version: 2.4
 Name: mad_proxy
-Version: 0.2
-Summary: A local HTTP/HTTPS proxy with custom detection and blocking policies.
+Version: 0.3
+Summary: Lightweight HTTP/HTTPS interception proxy with real-time traffic firewall and domain block.
 Home-page: https://github.com/machphy/mad-proxy
 Author: machphy
 Author-email: rajeevsharmamachphy@gmail.com
