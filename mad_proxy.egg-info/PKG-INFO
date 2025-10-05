@@ -1,5 +1,5 @@
-Metadata-Version: 2.4
-Name: mad_proxy
+Metadata-Version: 2.1
+Name: mad-proxy
 Version: 0.3
 Summary: Lightweight HTTP/HTTPS interception proxy with real-time traffic firewall and domain block.
 Home-page: https://github.com/machphy/mad-proxy
@@ -7,10 +7,3 @@ Author: machphy
 Author-email: rajeevsharmamachphy@gmail.com
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
-Requires-Dist: mitmproxy>=7.0.0
-Dynamic: author
-Dynamic: author-email
-Dynamic: classifier
-Dynamic: home-page
-Dynamic: requires-dist
-Dynamic: summary
