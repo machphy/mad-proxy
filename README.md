@@ -4,10 +4,6 @@
 A Python-based HTTP/HTTPS proxy server for real-time detection and blocking of malicious web activity using custom security policies.  
 Built with mitmproxy for cybersecurity professionals, red teamers, and developers who want transparency and control in web traffic inspection and security.
 
-# Mad Proxy
-
-[![CVE-2025-61767: fixed](https://img.shields.io/badge/CVE-2025--61767-fixed-brightgreen)](https://nvd.nist.gov/vuln/detail/CVE-2025-61767)
-
 
 ## Standard Operating Procedure.
 
