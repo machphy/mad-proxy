@@ -14,6 +14,25 @@ Read [SOP](https://github.com/machphy/mad-proxy/blob/main/img/SOP_rajeev.pdf)
 
 ---
 
+# mad-proxy: Malicious Activity Detection Proxy
+
+![CVE-2025-61767 Assigned](https://img.shields.io/badge/CVE-2025--61767-assigned-brightgreen)
+![Fixed in v0.4](https://img.shields.io/badge/Status-Fixed%20in%20v0.4-blue)
+
+A Python-based local HTTP/HTTPS proxy server designed to detect and block malicious activity in web traffic by applying custom security policies in real-time.  
+Built on mitmproxy, `mad-proxy` empowers cybersecurity professionals and developers to intercept, inspect, and secure web traffic with customizable rules.
+
+---
+
+## 🚨 Security Advisory
+
+> **CVE-2025-61767 — HTTPS Traffic Interception Bypass vulnerability fixed in v0.4**  
+> - [CVE Record](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61767)  
+> - [GitHub Security Advisory](https://github.com/advisories/GHSA-rjrf-hf7c-4vfr)
+
+**Upgrade to v0.4+ immediately to remain protected. See full details in [CHANGELOG.md](./CHANGELOG.md).**
+
+
 ## Features
 
 - **Intercepts all HTTP and HTTPS browser traffic** via a local proxy server.
